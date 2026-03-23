@@ -28,7 +28,7 @@ Follow these steps to get your development environment set up quickly.
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/EngMohammed40/laravel-react-starter-kit-multi-tenant
 cd react-starterkit-saas
 ```
 
