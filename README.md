@@ -29,7 +29,7 @@ Follow these steps to get your development environment set up quickly.
 
 ```bash
 git clone https://github.com/EngMohammed40/laravel-react-starter-kit-multi-tenant
-cd react-starterkit-saas
+cd laravel-react-starter-kit-multi-tenant
 ```
 
 ### 2. Setup Project
