@@ -14,7 +14,7 @@ export default function Appearance() {
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Appearance settings',
-            href: editAppearance(tenant),
+            href: editAppearance(),
         },
     ];
     return (

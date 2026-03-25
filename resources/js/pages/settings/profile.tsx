@@ -22,11 +22,11 @@ export default function Profile({
     mustVerifyEmail: boolean;
     status?: string;
 }) {
-    const { auth, tenant } = usePage().props;
+    const { auth } = usePage().props;
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Profile settings',
-            href: edit(tenant),
+            href: edit(),
         },
     ];
     return (
@@ -44,7 +44,7 @@ export default function Profile({
                     />
 
                     <Form
-                        {...ProfileController.update.form(tenant)}
+                        {...ProfileController.update.form(undefined as any)}
                         options={{
                             preserveScroll: true,
                         }}

@@ -34,7 +34,7 @@ export default function Security({
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Security settings',
-            href: edit(tenant),
+            href: edit(),
         },
     ];
     const passwordInput = useRef<HTMLInputElement>(null);
@@ -67,7 +67,7 @@ export default function Security({
                     />
 
                     <Form
-                        {...SecurityController.update.form(tenant)}
+                        {...SecurityController.update.form()}
                         options={{
                             preserveScroll: true,
                         }}

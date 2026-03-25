@@ -12,7 +12,7 @@ export default function Dashboard() {
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Dashboard',
-            href: dashboard(tenant),
+            href: dashboard(),
         },
     ];
     return (
