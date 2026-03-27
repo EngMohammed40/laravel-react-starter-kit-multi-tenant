@@ -4,21 +4,21 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
+use App\Http\Responses\LoginResponse;
+use App\Http\Responses\RedirectAsIntended;
+use App\Http\Responses\RegisterResponse;
+use App\Http\Responses\VerifyEmailResponse;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
-use App\Http\Responses\RegisterResponse;
-use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
-use App\Http\Responses\LoginResponse;
-use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
-use App\Http\Responses\VerifyEmailResponse;
-use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
-use App\Http\Responses\RedirectAsIntended;
 use Laravel\Fortify\Http\Responses\RedirectAsIntended as BaseRedirectAsIntended;
 
 class FortifyServiceProvider extends ServiceProvider

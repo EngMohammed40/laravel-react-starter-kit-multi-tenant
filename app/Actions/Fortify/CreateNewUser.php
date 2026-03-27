@@ -23,7 +23,7 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             ...$this->profileRules(),
             'password' => $this->passwordRules(),
-            'organization' => ['required', 'string', 'max:255','unique:tenants,id'],
+            'organization' => ['required', 'string', 'max:255', 'unique:tenants,id'],
         ])->validate();
 
         $tenant = Tenant::create([

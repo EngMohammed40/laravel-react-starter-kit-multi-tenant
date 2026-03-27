@@ -3,9 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
-use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +19,7 @@ use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 Route::group([
     'prefix' => '/{tenant}',
-    'middleware' => ['web',InitializeTenancyByPath::class],
+    'middleware' => ['web', InitializeTenancyByPath::class],
 ], function () {
 
     Route::get('/dssdsdsdds', function () {
@@ -32,8 +30,6 @@ Route::group([
         Route::inertia('dashboard', 'dashboard')->name('dashboard');
     });
 
-    
     require __DIR__.'/settings.php';
-
 
 });

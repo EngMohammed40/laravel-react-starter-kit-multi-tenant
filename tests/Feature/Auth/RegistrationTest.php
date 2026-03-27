@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use function Pest\Laravel\get;
 use function Pest\Laravel\post;
 
-
 test('registration screen can be rendered', function () {
     $response = get(route('register'));
 

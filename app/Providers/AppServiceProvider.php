@@ -5,8 +5,10 @@ namespace App\Providers;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use Stancl\Tenancy\Tenancy;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,8 +29,8 @@ class AppServiceProvider extends ServiceProvider
             return $value;
         });
 
-        if (app(\Stancl\Tenancy\Tenancy::class)->initialized) {
-            \Illuminate\Support\Facades\URL::defaults([
+        if (app(Tenancy::class)->initialized) {
+            URL::defaults([
                 'tenant' => tenant('id'),
             ]);
         }

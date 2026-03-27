@@ -41,9 +41,9 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'tenant' => tenancy()->initialized 
-                ? tenant('id') 
-                : null, 
+            'tenant' => tenancy()->initialized
+                ? tenant('id')
+                : null,
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
     }
