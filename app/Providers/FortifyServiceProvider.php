@@ -14,6 +14,12 @@ use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use App\Http\Responses\RegisterResponse;
 use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use App\Http\Responses\LoginResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use App\Http\Responses\VerifyEmailResponse;
+use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
+use App\Http\Responses\RedirectAsIntended;
+use Laravel\Fortify\Http\Responses\RedirectAsIntended as BaseRedirectAsIntended;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,6 +43,21 @@ class FortifyServiceProvider extends ServiceProvider
         $this->app->singleton(
             RegisterResponseContract::class,
             RegisterResponse::class
+        );
+
+        $this->app->singleton(
+            LoginResponseContract::class,
+            LoginResponse::class
+        );
+
+        $this->app->singleton(
+            VerifyEmailResponseContract::class,
+            VerifyEmailResponse::class
+        );
+
+        $this->app->bind(
+            BaseRedirectAsIntended::class,
+            RedirectAsIntended::class
         );
     }
 

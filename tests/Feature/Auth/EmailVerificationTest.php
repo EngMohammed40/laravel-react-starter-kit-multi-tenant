@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\URL;
 use Laravel\Fortify\Features;
 
+use function Pest\Laravel\actingAs;
+
 beforeEach(function () {
     $this->skipUnlessFortifyFeature(Features::emailVerification());
 });
@@ -13,7 +15,7 @@ beforeEach(function () {
 test('email verification screen can be rendered', function () {
     $user = User::factory()->unverified()->create();
 
-    $response = $this->actingAs($user)->get(route('verification.notice'));
+    $response = actingAs($user)->get(route('verification.notice'));
 
     $response->assertOk();
 });
@@ -29,11 +31,11 @@ test('email can be verified', function () {
         ['id' => $user->id, 'hash' => sha1($user->email)],
     );
 
-    $response = $this->actingAs($user)->get($verificationUrl);
+    $response = actingAs($user)->get($verificationUrl);
 
     Event::assertDispatched(Verified::class);
     expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
-    $response->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+    $response->assertRedirect(route('dashboard', ['tenant' => $user->tenant_id], absolute: false).'?verified=1');
 });
 
 test('email is not verified with invalid hash', function () {
@@ -78,7 +80,7 @@ test('verified user is redirected to dashboard from verification prompt', functi
     $response = $this->actingAs($user)->get(route('verification.notice'));
 
     Event::assertNotDispatched(Verified::class);
-    $response->assertRedirect(route('dashboard', absolute: false));
+    $response->assertRedirect(route('dashboard', ['tenant' => $user->tenant_id], absolute: false));
 });
 
 test('already verified user visiting verification link is redirected without firing event again', function () {
@@ -93,7 +95,7 @@ test('already verified user visiting verification link is redirected without fir
     );
 
     $this->actingAs($user)->get($verificationUrl)
-        ->assertRedirect(route('dashboard', absolute: false).'?verified=1');
+        ->assertRedirect(route('dashboard', ['tenant' => $user->tenant_id], absolute: false).'?verified=1');
 
     Event::assertNotDispatched(Verified::class);
     expect($user->fresh()->hasVerifiedEmail())->toBeTrue();

@@ -7,7 +7,7 @@ test('profile page is displayed', function () {
 
     $response = $this
         ->actingAs($user)
-        ->get(route('profile.edit'));
+        ->get(route('profile.edit', ['tenant' => $user->tenant_id]));
 
     $response->assertOk();
 });
@@ -17,14 +17,14 @@ test('profile information can be updated', function () {
 
     $response = $this
         ->actingAs($user)
-        ->patch(route('profile.update'), [
+        ->patch(route('profile.update', ['tenant' => $user->tenant_id]), [
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect(route('profile.edit'));
+        ->assertRedirect(route('profile.edit', ['tenant' => $user->tenant_id]));
 
     $user->refresh();
 
@@ -38,14 +38,14 @@ test('email verification status is unchanged when the email address is unchanged
 
     $response = $this
         ->actingAs($user)
-        ->patch(route('profile.update'), [
+        ->patch(route('profile.update', ['tenant' => $user->tenant_id]), [
             'name' => 'Test User',
             'email' => $user->email,
         ]);
 
     $response
         ->assertSessionHasNoErrors()
-        ->assertRedirect(route('profile.edit'));
+        ->assertRedirect(route('profile.edit', ['tenant' => $user->tenant_id]));
 
     expect($user->refresh()->email_verified_at)->not->toBeNull();
 });
@@ -55,7 +55,7 @@ test('user can delete their account', function () {
 
     $response = $this
         ->actingAs($user)
-        ->delete(route('profile.destroy'), [
+        ->delete(route('profile.destroy', ['tenant' => $user->tenant_id]), [
             'password' => 'password',
         ]);
 
@@ -72,8 +72,8 @@ test('correct password must be provided to delete account', function () {
 
     $response = $this
         ->actingAs($user)
-        ->from(route('profile.edit'))
-        ->delete(route('profile.destroy'), [
+        ->from(route('profile.edit', ['tenant' => $user->tenant_id]))
+        ->delete(route('profile.destroy', ['tenant' => $user->tenant_id]), [
             'password' => 'wrong-password',
         ]);
 
