@@ -59,7 +59,9 @@ export default function Register() {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="organization">Organization</Label>
+                                <Label htmlFor="organization">
+                                    Organization
+                                </Label>
                                 <Input
                                     id="organization"
                                     type="text"

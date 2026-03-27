@@ -13,8 +13,6 @@ import { edit } from '@/routes/profile';
 import { send } from '@/routes/verification';
 import type { BreadcrumbItem } from '@/types';
 
-
-
 export default function Profile({
     mustVerifyEmail,
     status,
@@ -29,6 +27,7 @@ export default function Profile({
             href: edit(),
         },
     ];
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Profile settings" />
@@ -109,12 +108,12 @@ export default function Profile({
 
                                             {status ===
                                                 'verification-link-sent' && (
-                                                    <div className="mt-2 text-sm font-medium text-green-600">
-                                                        A new verification link has
-                                                        been sent to your email
-                                                        address.
-                                                    </div>
-                                                )}
+                                                <div className="mt-2 text-sm font-medium text-green-600">
+                                                    A new verification link has
+                                                    been sent to your email
+                                                    address.
+                                                </div>
+                                            )}
                                         </div>
                                     )}
 

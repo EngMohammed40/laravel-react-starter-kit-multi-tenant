@@ -39,8 +39,6 @@ type Props = {
     breadcrumbs?: BreadcrumbItem[];
 };
 
-
-
 const rightNavItems: NavItem[] = [
     {
         title: 'Repository',
@@ -59,13 +57,12 @@ const activeItemStyles =
 
 export function AppHeader({ breadcrumbs = [] }: Props) {
     const page = usePage();
-    const { auth, tenant } = page.props;
-
+    const { auth } = page.props;
 
     const mainNavItems: NavItem[] = [
         {
             title: 'Dashboard',
-            href: dashboard(tenant),
+            href: dashboard(),
             icon: LayoutGrid,
         },
     ];
@@ -139,7 +136,7 @@ export function AppHeader({ breadcrumbs = [] }: Props) {
                     </div>
 
                     <Link
-                        href={dashboard(tenant)}
+                        href={dashboard()}
                         prefetch
                         className="flex items-center space-x-2"
                     >

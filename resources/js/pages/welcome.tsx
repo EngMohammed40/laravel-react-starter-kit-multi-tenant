@@ -6,7 +6,7 @@ export default function Welcome({
 }: {
     canRegister?: boolean;
 }) {
-    const { auth, tenant } = usePage().props;
+    const { auth } = usePage().props;
 
     return (
         <>

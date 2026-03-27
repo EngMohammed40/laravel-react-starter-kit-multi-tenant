@@ -20,12 +20,16 @@ createInertiaApp({
         const root = createRoot(el);
 
         const tenant = props.initialPage.props.tenant as string | undefined;
+
         if (tenant) {
             addUrlDefault('tenant', tenant);
         }
 
         router.on('navigate', (event) => {
-            const currentTenant = event.detail.page.props.tenant as string | undefined;
+            const currentTenant = event.detail.page.props.tenant as
+                | string
+                | undefined;
+
             if (currentTenant) {
                 addUrlDefault('tenant', currentTenant);
             }

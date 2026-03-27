@@ -1,20 +1,17 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem } from '@/types';
 
-
-
 export default function Dashboard() {
-    const page = usePage();
-    const { tenant } = page.props;
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Dashboard',
             href: dashboard(),
         },
     ];
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />

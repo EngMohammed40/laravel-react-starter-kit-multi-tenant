@@ -1,4 +1,4 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 import type { PropsWithChildren } from 'react';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
@@ -10,12 +10,7 @@ import { edit } from '@/routes/profile';
 import { edit as editSecurity } from '@/routes/security';
 import type { NavItem } from '@/types';
 
-
-
 export default function SettingsLayout({ children }: PropsWithChildren) {
-    const page = usePage();
-    const { tenant } = page.props;
-
     const sidebarNavItems: NavItem[] = [
         {
             title: 'Profile',

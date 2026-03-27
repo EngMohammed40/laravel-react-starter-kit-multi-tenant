@@ -1,4 +1,4 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import AppearanceTabs from '@/components/appearance-tabs';
 import Heading from '@/components/heading';
 import AppLayout from '@/layouts/app-layout';
@@ -6,17 +6,14 @@ import SettingsLayout from '@/layouts/settings/layout';
 import { edit as editAppearance } from '@/routes/appearance';
 import type { BreadcrumbItem } from '@/types';
 
-
-
 export default function Appearance() {
-    const page = usePage();
-    const { tenant } = page.props;
     const breadcrumbs: BreadcrumbItem[] = [
         {
             title: 'Appearance settings',
             href: editAppearance(),
         },
     ];
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Appearance settings" />
